@@ -19,4 +19,6 @@ Route::get('/', function () {
 //        'parse_mode' => 'html',
 //        'text' => '<b>Hello Bot</b>',
 //    ]);
+
+    return view('welcome');
 });
