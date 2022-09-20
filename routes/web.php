@@ -13,12 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (\App\TelegramClass\Telegram $telegram) {
 //    Illuminate\Support\Facades\Http::post('https://api.telegram.org/bot5739064178:AAFefWL-4rMZMI82rmUfIzGmbB-js12t7CQ/sendMessage', [
 //        'chat_id' => 404886081,
 //        'parse_mode' => 'html',
 //        'text' => '<b>Hello Bot</b>',
 //    ]);
 
-    return view('welcome');
+    $sendMessage = $telegram->sendMessage('404886081', 'test');
+    $sendMessage = json_decode($sendMessage);
+    $http = $telegram->sendDocument('404886081', '/public/1.png', $sendMessage->result->message_id);
+    dd($http->body());
+
+//    $x = Storage::get('/public/1.png');
+//    dd($x);
+
+//    return view('welcome');
 });

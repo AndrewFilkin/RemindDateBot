@@ -52,7 +52,7 @@ class Handler extends ExceptionHandler
             'line' => $e->getLine(),
         ];
 
-        $this->telegram->sendMessage(404886081, (string)view('report', $data));
+        $this->telegram->sendMessage(env('REPORT_TELEGRAM_ID'), (string)view('report', $data));
 
     }
 
