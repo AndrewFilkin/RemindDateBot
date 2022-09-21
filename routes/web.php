@@ -20,13 +20,34 @@ Route::get('/', function (\App\TelegramClass\Telegram $telegram) {
 //        'text' => '<b>Hello Bot</b>',
 //    ]);
 
-    $sendMessage = $telegram->sendMessage('404886081', 'test');
-    $sendMessage = json_decode($sendMessage);
-    $http = $telegram->sendDocument('404886081', '/public/1.png', $sendMessage->result->message_id);
-    dd($http->body());
+//    $sendMessage = $telegram->sendMessage('404886081', 'test');
+//    $sendMessage = json_decode($sendMessage);
+//    $http = $telegram->sendDocument('404886081', '/public/1.png', $sendMessage->result->message_id);
+//    dd($http->body());
 
 //    $x = Storage::get('/public/1.png');
 //    dd($x);
 
 //    return view('welcome');
+
+    $buttons = [
+        'inline_keyboard' => [
+            [
+                [
+                    'text' => 'button1',
+                    'callback_data' => '1',
+                ],
+            ],
+            [
+                [
+                    'text' => 'button2',
+                    'callback_data' => '2',
+                ]
+            ],
+        ]
+    ];
+    $sendButton = $telegram->editButtons('404886081', 'test', json_encode($buttons), 69);
+    $sendButton = json_decode($sendButton);
+    dd($sendButton);
+
 });
