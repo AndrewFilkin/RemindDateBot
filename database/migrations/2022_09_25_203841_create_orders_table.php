@@ -21,8 +21,6 @@ return new class extends Migration
             $table->boolean('public');
             $table->string('secret_key');
 
-
-
             $table->timestamps();
         });
     }

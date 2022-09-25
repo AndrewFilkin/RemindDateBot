@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Orders extends Model
+class Order extends Model
 {
     use HasFactory;
+
+    protected $table = 'orders';
 
     protected $fillable = [
         'name',
@@ -23,5 +25,4 @@ class Orders extends Model
     {
         return $query->where('public', 1);
     }
-
 }
