@@ -46,11 +46,12 @@ class Handler extends ExceptionHandler
 //            'text' => (string)view('report', $data),
 //        ]);
 
-        $data = [
-            'description' => $e->getMessage(),
-            'file' => $e->getFile(),
-            'line' => $e->getLine(),
-        ];
+        //Код ниже посылает в телеграмм сообщение об ошибке
+//        $data = [
+//            'description' => $e->getMessage(),
+//            'file' => $e->getFile(),
+//            'line' => $e->getLine(),
+//        ];
 
         $this->telegram->sendMessage(env('REPORT_TELEGRAM_ID'), (string)view('report', $data));
 

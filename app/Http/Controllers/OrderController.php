@@ -11,31 +11,36 @@ class OrderController extends Controller
 {
     public function store(Order $order, Request $request, Telegram $telegram)
     {
+        $key = base64_encode(md5(uniqid()));
         $order->create([
             'name' => $request->input('name'),
             'email' => $request->input('email2'),
             'product' => $request->input('product'),
+            'secret_key' => $key,
         ]);
 
+        $field_data = $order->where('secret_key', $key)->first();
+
         $data = [
-            'id' => $order->id,
-            'name' => $order->name,
-            'email' => $order->email,
-            'product' => $order->product,
+            'id' => $field_data->id,
+            'name' => $field_data->name,
+            'email' => $field_data->email,
+            'product' => $field_data->product,
         ];
+
 
         $buttons = [
         'inline_keyboard' => [
             [
                 [
                     'text' => 'Принять',
-                    'callback_data' => '',
+                    'callback_data' => '1|'.$key,
                 ],
             ],
             [
                 [
                     'text' => 'Отклонить',
-                    'callback_data' => '',
+                    'callback_data' => '0|'.$key,
                 ]
             ],
         ]

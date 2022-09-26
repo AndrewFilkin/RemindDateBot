@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('product');
-            $table->boolean('public');
+            $table->boolean('public')->default(0);
             $table->string('secret_key');
 
             $table->timestamps();
